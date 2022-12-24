@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +23,16 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-Route::get('/register',[RegisterController::class, 'Index'])->name('register');
-Route::post('/register',[RegisterController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'Index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
-Route::post('/logout',[LogoutController::class,'store'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/{user:username}',[PostController::class,'index'])->name('post.index');
-Route::get('/post/create',[PostController::class,'create'])->name('post.create');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 
 
 Route::post('/imagenes', [ImgController::class, 'store'])->name('imagenes.store');

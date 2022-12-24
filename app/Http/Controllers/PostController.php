@@ -11,10 +11,21 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(User $user){
-        return view('dashbord',['user' => $user]);
+    public function index(User $user)
+    {
+        return view('dashbord', ['user' => $user]);
     }
-    public function create(){
+    public function create()
+    {
         return view('post.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+            'imagen' => 'required',
+        ]);
     }
 }
